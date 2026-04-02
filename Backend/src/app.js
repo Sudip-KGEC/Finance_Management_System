@@ -1,0 +1,18 @@
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+
+const app = express();
+
+app.use(express.json());
+app.use(morgan("dev"));
+app.use(cors({
+    origin : "http://localhost:5173"
+}))
+
+app.get("/" , (req , res) => {
+    res.send("API working Well...")
+})
+
+
+export default app;
