@@ -4,7 +4,7 @@ import "../styles/sidebar.scss";
 export default function Sidebar() {
   return (
     <div className="sidebar">
-      <h2 className="logo">💸 FinTrack</h2>
+      <h2 className="logo">FinTrack</h2>
 
       <nav>
         <NavLink to="/" end className="link">
