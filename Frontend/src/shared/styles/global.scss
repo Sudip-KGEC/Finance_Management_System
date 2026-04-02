@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 🌞 Light Theme */
+[data-theme="light"] {
+  --bg: #f6f8fb;
+  --text: #111827;
+  --card: #ffffff;
+  --border: #e5e7eb;
+}
+
+/* 🌙 Dark Theme */
+[data-theme="dark"] {
+  --bg: #111827;
+  --text: #f9fafb;
+  --card: #1f2937;
+  --border: #374151;
+}

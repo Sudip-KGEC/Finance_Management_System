@@ -1,0 +1,39 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: var(--card);
+  color: var(--text);
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  .logo {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .link {
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #cbd5e1;
+      transition: 0.2s;
+
+      &:hover {
+        background: #1f2937;
+        color: #fff;
+      }
+
+      &.active {
+        background: #4f46e5;
+        color: white;
+      }
+    }
+  }
+}
