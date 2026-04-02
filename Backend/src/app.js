@@ -25,7 +25,7 @@ app.get("/" , (req , res) => {
 
 
 app.use("/api/auth" , authRoute);
-app.use("/api/transaction" , transactionRoute);
+app.use("/api/transactions" , transactionRoute);
 app.use("/api/dashboard" , dashboardRoute);
 app.use("/api/insights" , insightsRoute)
 
