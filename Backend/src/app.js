@@ -5,7 +5,9 @@ import cookieParser from 'cookie-parser';
 
 //route
 import authRoute from './modules/auth/auth.routes.js';
-import transactionRoute from './modules/transaction/transaction.routes.js'
+import transactionRoute from './modules/transaction/transaction.routes.js';
+import dashboardRoute from './modules/dashboard/dashboard.routes.js';
+import insightsRoute from './modules/insights/insights.routes.js'
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.get("/" , (req , res) => {
 
 
 app.use("/api/auth" , authRoute);
-app.use("/api/transaction" , transactionRoute)
+app.use("/api/transaction" , transactionRoute);
+app.use("/api/dashboard" , dashboardRoute);
+app.use("/api/insights" , insightsRoute)
 
 export default app;
