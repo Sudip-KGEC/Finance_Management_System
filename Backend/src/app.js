@@ -14,7 +14,7 @@ const app = express();
 
 
 app.use(cors({
-origin: process.env.CLIENT_URL,
+  origin: process.env.CLIENT_URL || "https://finance-management-system-seven.vercel.app",
   credentials: true,
 }));
 app.use(express.json());

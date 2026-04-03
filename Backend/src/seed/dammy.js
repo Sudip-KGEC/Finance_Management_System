@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import Transaction from "../models/transaction.model.js";
 
-const userId = new mongoose.Types.ObjectId("69cde49e64c3cf69b0bef32c");
+const userId = new mongoose.Types.ObjectId("69cf36b9ab7a7249ea9c80e4");
 
 const dummydata = [
   {
