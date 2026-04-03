@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createTransaction } from "../services/transaction.service";
+import { IndianRupee, Tag, FileText, ArrowDownCircle } from "lucide-react";
 
 import "../styles/addTransaction.scss";
 
@@ -23,6 +24,8 @@ export default function AddTransaction({ onClose, onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!form.amount || !form.category) return;
+
     try {
       setLoading(true);
 
@@ -31,61 +34,98 @@ export default function AddTransaction({ onClose, onSuccess }) {
         amount: Number(form.amount),
       });
 
-      onSuccess(); 
-      onClose();   
+      onSuccess();
+      onClose();
     } catch (error) {
-      console.log("Error adding transaction" , error.message);
+      console.log("Error adding transaction", error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="modal">
-      <div className="modal__content">
+    <div className="modal" onClick={onClose}>
+      <div
+        className="modal__content"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h3>Add Transaction</h3>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="number"
-            name="amount"
-            placeholder="Amount"
-            value={form.amount}
-            onChange={handleChange}
-          />
+          {/* Amount */}
+          <div className="form-group">
+            <label>Amount</label>
+            <div className="input-wrap">
+              <IndianRupee size={16} />
+              <input
+                type="number"
+                name="amount"
+                placeholder="Enter amount"
+                value={form.amount}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-          <select
-            name="type"
-            value={form.type}
-            onChange={handleChange}
-          >
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
+          {/* Type */}
+          <div className="form-group">
+            <label>Type</label>
+            <select
+              name="type"
+              value={form.type}
+              onChange={handleChange}
+            >
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </div>
 
-          <input
-            type="text"
-            name="category"
-            placeholder="Category"
-            value={form.category}
-            onChange={handleChange}
-          />
+          {/* Category */}
+          <div className="form-group">
+            <label>Category</label>
+            <div className="input-wrap">
+              <Tag size={16} />
+              <input
+                type="text"
+                name="category"
+                placeholder="e.g Food, Salary"
+                value={form.category}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-          <input
-            type="text"
-            name="description"
-            placeholder="Description"
-            value={form.description}
-            onChange={handleChange}
-          />
+          {/* Description */}
+          <div className="form-group">
+            <label>Description</label>
+            <div className="input-wrap">
+              <FileText size={16} />
+              <input
+                type="text"
+                name="description"
+                placeholder="Optional note"
+                value={form.description}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
+          {/* Actions */}
           <div className="actions">
-            <button type="submit" disabled={loading}>
-              {loading ? "Adding..." : "Add"}
+            <button
+              type="button"
+              className="cancel"
+              onClick={onClose}
+            >
+              Cancel
             </button>
 
-            <button type="button" onClick={onClose}>
-              Cancel
+            <button
+              type="submit"
+              className="submit"
+              disabled={loading}
+            >
+              {loading ? "Adding..." : "Add"}
             </button>
           </div>
         </form>

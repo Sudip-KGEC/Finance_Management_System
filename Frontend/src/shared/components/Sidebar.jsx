@@ -1,24 +1,53 @@
 import { NavLink } from "react-router-dom";
+import { X, LayoutDashboard, Receipt, BarChart3 } from "lucide-react";
+
 import "../styles/sidebar.scss";
 
-export default function Sidebar() {
+export default function Sidebar({ open, setOpen }) {
+  
   return (
-    <div className="sidebar">
-      <h2 className="logo">FinTrack</h2>
+    <>
+      {/* Overlay (mobile only) */}
+      {open && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setOpen(false)}
+        />
+      )}
 
-      <nav>
-        <NavLink to="/" end className="link">
-          Dashboard
-        </NavLink>
+      {/* Sidebar */}
+      <div className={`sidebar ${open ? "open" : ""}`}>
+        {/* Top (logo + close btn for mobile) */}
+        <div className="sidebar__top">
+          <h2 className="logo">FinanceQ</h2>
 
-        <NavLink to="/transactions" className="link">
-          Transactions
-        </NavLink>
+          {/* close button (mobile only) */}
+          <button
+            className="close-btn"
+            onClick={() => setOpen(false)}
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-        <NavLink to="/insights" className="link">
-          Insights
-        </NavLink>
-      </nav>
-    </div>
+        {/* Nav Links */}
+        <nav>
+          <NavLink to="/" end className="link" onClick={() => setOpen(false)}>
+            <LayoutDashboard size={18} />
+            <span>Dashboard</span>
+          </NavLink>
+
+          <NavLink to="/transactions" className="link" onClick={() => setOpen(false)}>
+            <Receipt size={18} />
+            <span>Transactions</span>
+          </NavLink>
+
+          <NavLink to="/insights" className="link" onClick={() => setOpen(false)}>
+            <BarChart3 size={18} />
+            <span>Insights</span>
+          </NavLink>
+        </nav>
+      </div>
+    </>
   );
 }

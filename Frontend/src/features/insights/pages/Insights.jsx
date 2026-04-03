@@ -33,7 +33,7 @@ export default function Insights() {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="value" fill="#4f46e5" />
+              <Bar dataKey="value" fill="#ff8019" />
             </BarChart>
           </ResponsiveContainer>
         </div>

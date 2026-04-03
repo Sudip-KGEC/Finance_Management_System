@@ -9,6 +9,7 @@ import {
   YAxis,
   Tooltip
 } from "recharts";
+import { Wallet, ArrowDownCircle, ArrowUpCircle } from "lucide-react";
 
 import useDashboard from "../hooks/useDashboard.js";
 import "../styles/dashboard.scss";
@@ -83,9 +84,25 @@ export default function Dashboard() {
 
       {/* Cards */}
       <div className="dashboard__cards">
-        <div className="card"><p>Balance: ₹{data.balance}</p></div>
-        <div className="card"><p>Income: ₹{data.totalIncome}</p></div>
-        <div className="card"><p>Expense: ₹{data.totalExpense}</p></div>
+        <div className="card">
+          <div className="card__top">
+            <Wallet size={18} />
+            <span className="title">Balance</span>
+          </div>
+          <div className="value">₹{data.balance}</div>
+        </div>
+
+        <div className="card"><div className="card__top">
+    <span className="title">Income</span>
+    <ArrowDownCircle size={18} />
+  </div>
+  <div className="value highlight">₹{data.totalIncome}</div></div>
+
+        <div className="card"> <div className="card__top">
+    <span className="title">Expense</span>
+    <ArrowUpCircle size={18} />
+  </div>
+  <div className="value">₹{data.totalExpense}</div></div>
       </div>
 
     </div>
