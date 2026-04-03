@@ -12,9 +12,12 @@ import insightsRoute from './modules/insights/insights.routes.js'
 
 const app = express();
 
-
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://finance-management-system-seven.vercel.app"
+];
 app.use(cors({
-  origin: process.env.CLIENT_URL || "https://finance-management-system-seven.vercel.app",
+  origin:allowedOrigins,
   credentials: true,
 }));
 app.use(express.json());
