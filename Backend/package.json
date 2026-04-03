@@ -1,9 +1,10 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Finance Management System Backend",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "dev": "npx nodemon server.js"
   },
   "keywords": [],
