@@ -10,10 +10,11 @@ export default function Transactions() {
     loading,
     handleDelete,
     handleFilterChange,
+    refetch
   } = useTransactions();
 
 
-   const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="transactions">
@@ -109,7 +110,10 @@ export default function Transactions() {
       {showModal && (
         <AddTransaction
           onClose={() => setShowModal(false)}
-          onSuccess={() => window.location.reload()} 
+          onSuccess={() => {
+            refetch();           
+            setShowModal(false); 
+          }}
         />
       )}
     </div>

@@ -52,5 +52,6 @@ export default function useTransactions() {
     loading,
     handleDelete,
     handleFilterChange,
+    refetch: fetchTransactions
   };
 }

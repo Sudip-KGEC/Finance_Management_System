@@ -35,7 +35,7 @@ export default function AddTransaction({ onClose, onSuccess }) {
       });
 
       onSuccess();
-      onClose();
+    
     } catch (error) {
       console.log("Error adding transaction", error.message);
     } finally {
