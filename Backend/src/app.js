@@ -16,8 +16,16 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://finance-management-system-seven.vercel.app"
 ];
+
 app.use(cors({
-  origin:allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); 
+    if (allowedOrigins.includes(origin)) {
+      callback(null, origin); 
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 }));
 app.use(express.json());
