@@ -1,30 +1,68 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 import AppLayout from "./layouts/AppLayout";
 
-import Login from "../features/auth/pages/Login";
-import Register from "../features/auth/pages/Register";
-import Dashboard from "../features/dashboard/pages/Dashboard";
-import Transactions from "../features/transactions/pages/Transactions";
-import Insights from "../features/insights/pages/Insights";
+// Lazy imports
+const Login = lazy(() => import("../features/auth/pages/Login"));
+const Register = lazy(() => import("../features/auth/pages/Register"));
+const Dashboard = lazy(() => import("../features/dashboard/pages/Dashboard"));
+const Transactions = lazy(() => import("../features/transactions/pages/Transactions"));
+const Insights = lazy(() => import("../features/insights/pages/Insights"));
+
+// Loader component
+const Loader = () => <div>Loading...</div>;
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <AppLayout />
+      </Suspense>
+    ),
     children: [
-      { path: "/", element: <Dashboard /> },
-      { path: "/transactions", element: <Transactions /> },
-      { path: "/insights", element: <Insights /> },
+      {
+        path: "/",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/transactions",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Transactions />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/insights",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Insights />
+          </Suspense>
+        ),
+      },
     ],
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Login />
+      </Suspense>
+    ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Register />
+      </Suspense>
+    ),
   },
 ]);
 
